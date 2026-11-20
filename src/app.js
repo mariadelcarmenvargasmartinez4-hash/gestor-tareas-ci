@@ -58,16 +58,11 @@ app.delete('/tasks/:id', (req, res) => {
   res.status(204).end();
 });
 
-// Versión 1 del reporte (código heredado).
+// Versión 2 del reporte: solo cuenta las tareas, sin el ciclo heredado.
 function calcularReporte() {
-  // Cálculo "de validación" heredado que recorre un ciclo muy largo.
-  let acumulado = 0;
-  for (let i = 0; i < 50000000; i++) {
-    acumulado += i % 7;
-  }
   const total = tareas.length;
   const hechas = tareas.filter((t) => t.done).length;
-  return { total, hechas, pendientes: total - hechas, valido: acumulado >= 0 };
+  return { total, hechas, pendientes: total - hechas };
 }
 
 app.get('/reporte', (req, res) => res.json(calcularReporte()));
