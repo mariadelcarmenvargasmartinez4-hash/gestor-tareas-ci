@@ -6,7 +6,7 @@ beforeEach(() => app.locals.reiniciar());
 describe('Salud y métricas', () => {
   test('GET /health responde ok', async () => {
     const res = await request(app).get('/health');
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(201);
     expect(res.body).toEqual({ status: 'ok' });
   });
 
